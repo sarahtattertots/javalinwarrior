@@ -1,0 +1,37 @@
+.list-ui{
+    position: absolute;
+    width: 95%;
+}
+
+.list-ui #img{
+  float: left;
+}
+
+.heading{
+  color: white;
+  text-decoration: none;
+  text-align: center;
+}
+
+.menu{
+    display: none;
+    font-size: 22.5px;
+}
+
+.menu ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+.menu li a{
+    display: block;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.menu li a:link{
+    color: white; 
+}

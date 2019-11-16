@@ -1,0 +1,27 @@
+#contactForm{
+    text-align: left;
+    margin-left: 36%;
+    padding-top: 12%;
+    color: white;
+}
+
+#email{
+    display: inline;
+    margin: 1em 1.3em 1em 1em;
+}
+
+#message{
+    display: inline;
+    vertical-align: top;
+    margin-right: 2em;
+}
+
+#contactForm button{
+    background-color: #169BD5;
+    border: none;
+    padding: .5em;
+    font-size: 16px;
+    border-radius: .3em;
+    cursor: pointer;
+    margin-left: 22%;
+}

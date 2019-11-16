@@ -1,0 +1,9 @@
+<form [formGroup]="completeMessage" (ngSubmit)="onSubmit()" id="contactForm">
+  <h3 id="email">Email:</h3>
+  <input type="text" name="email" id="email" value="Email"><br>
+
+  <h3 id="message">Message:</h3>
+  <textarea name="message" rows="10" cols="50" id="message">Enter your message here.</textarea><br><br>
+
+  <button class="button" type="submit">Submit</button>
+</form>

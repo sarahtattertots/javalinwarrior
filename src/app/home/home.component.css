@@ -1,0 +1,24 @@
+#homepage-body {
+    position: absolute;
+    left: 20%;
+    text-align: center;
+    top: 0;
+}
+
+#homepage-body img{
+  margin-top: 5%;
+}
+
+#homepage-body button{
+    background-color: #169BD5;
+    border: none;
+    font-size: 16px;
+    padding: 1em;
+    border-radius: .3em;
+    cursor: pointer;
+}
+
+body.base-page{
+    background-color: #002645;
+    color: white;
+}
