@@ -35,19 +35,33 @@ function runLevels(){
 
     if(level == 1){
         levelOneText();
-    } else if(level == 2){
+    }else if(level == 2){
         setTimeout(resetPage, 3000);
         setTimeout(levelTwoText, 3000);
-    } else if(level == 3){
-        setTimeout(resetPage, 5000);
-        setTimeout(levelThreeText, 5000);
-    } else if(level == 4){
+    }else if(level == 3){
+        setTimeout(resetPage, 3000);
+        setTimeout(levelThreeText, 3000);
+    }else if(level == 4){
         setTimeout(resetPage, 5000);
         setTimeout(levelFourText, 5000);
-    } else if(level == 5){
+    }else if(level == 5){
+        setTimeout(resetPage, 5000);
+        setTimeout(levelFiveText, 5000);
+    }else if(level == 6){
         setTimeout(resetPage, 10000);
-        setTimeout(levelFiveText, 10000);
-        
+        setTimeout(levelSixText, 10000);
+    }else if(level == 7){
+        setTimeout(resetPage, 15000);
+        setTimeout(levelSevenText, 15000);
+    }else if(level == 8){
+        setTimeout(resetPage, 10000);
+        setTimeout(levelEightText, 10000);
+    }else if(level == 9){
+        setTimeout(resetPage, 3000);
+        setTimeout(levelNineText, 3000);
+    }else if(level == 10){
+        setTimeout(resetPage, 8000);
+        setTimeout(levelTenText, 8000);
     }
     console.log("Level: " + level);
 }
@@ -59,34 +73,112 @@ function getInput(){
     userString = userString.replace(/ /g,'');
     console.log(userString);
     switch(userString){
-        case 'System.out.print("HelloWorld!");':
-            animateLevelOne();
-            level++;
-            break;
-        case "total=apple+mead;":
+        case 'System.out.print("HelloWorld!");': // LEVEL ONE
+            if(level == 1){
+                animateLevelOne();
+                level++;
+                break;
+            }else{
+                wrongAnswer();
+                break;
+            }
+        case "total=apple+mead;": // LEVEL TWO
         case "total=mead+apple;":
-            animateLevelTwo();
-            level++;
-            break;
-        case "warrior.walk();":
-            animateLevelThree();
-            level++;
-            break;
-        case "array.sort();":
-            animateLevelFour();
-            level++;
-            break;
-        case "keys[index].unlock();" :
-            animateLevelFive();
-            level++;
-            break;
+            if(level == 2){
+                animateLevelTwo();
+                level++;
+                break;
+            }else{
+                wrongAnswer();
+                break;
+            }
+        case "inventory={apple,mead};": // LEVEL THREE
+        case "inventory={mead,apple};":
+            if(level == 3){
+                animateLevelThree();
+                level++;
+                break;
+            }else{
+                wrongAnswer();
+                break;
+            }
+        case "warrior.walk();": // LEVEL FOUR
+            if(level == 4){
+                animateLevelFour();
+                level++;
+                break;
+            }else{
+                wrongAnswer();
+                break;
+            }
+        case "array.sort();": // LEVEL FIVE
+            if(level == 5){
+                animateLevelFive();
+                level++;
+                break;
+            }else{
+                wrongAnswer();
+                break;
+            }
+        case "keys[index].unlock();" : // LEVEL SIX
+            if(level == 6){
+                animateLevelSix();
+                level++;
+                break;
+            }else{
+                wrongAnswer();
+                break;
+            }
+        case "while(isObstructed==false)": // LEVEL SEVEN
+            if(level == 7){
+                animateLevelSeven();
+                level++;
+                break;
+            }else{
+                wrongAnswer();
+                break;
+            }
+        case "Weaponexcalibur=newWeapon(sword);": // LEVEL EIGHT
+                if(level == 8){
+                    animateLevelEight();
+                    level++;
+                    break;
+                }else{
+                    wrongAnswer();
+                    break;
+                }
+        case "if(isEnemy==true)": // LEVEL NINE
+            if(level == 9){
+                animateLevelNine();
+                level++;
+                break;
+            }else{
+                wrongAnswer();
+                break;
+            }
+        case "elseif(isAlly==true)": // LEVEL TEN
+            if(level == 10){
+                animateLevelTen();
+                level++;
+                break;
+            }else{
+                wrongAnswer();
+                break;
+            }
         default:
-            $("#speech-bubble-text").empty().text("Wrong Answer!");
-            $("#speech-bubble-area").removeClass("hidden");
+            wrongAnswer();
             break;
     }
     runLevels();
     
+}
+
+function wrongAnswer(){
+    $("#speech-bubble-text").empty().text("Wrong Answer!");
+    $("#speech-bubble-area").removeClass("hidden");
+}
+function rememberSemicolon(){
+
 }
 
 function resetPage(){
@@ -101,6 +193,8 @@ function resetPage(){
     $("#reverse-bridge-area").addClass("hidden");
     $("#keys-area").addClass("hidden");
     $("#door-area").addClass("hidden");
+    $("#end-loop").empty();
+    $("#sword-area").addClass("hidden");
 
 }
 
@@ -144,19 +238,39 @@ function animateLevelTwo(){
 
 }
 
-// Level Three - Instantiating Object and Functions
+// Level Four - Arrays
 function levelThreeText(){
+    $("#merchant-area").removeClass("hidden");
     // lesson area
-    $(".lesson-heading").text("Level 3: Objects and Functions");
-    $(".lesson-text").text("In this level you will notice there is a Warrior object created for you. The dot operator, '.', can be used to call functions on objects. \n Example: warrior.run(); \n Use the dot operator on your warrior object to call the walk() function.")
+    $(".lesson-heading").text("Level 3: Arrays");
+    $(".lesson-text").text("Arrays are a data structure that basically act as a collection of objects. It makes it easy to store and manage multiple objects. Declare an array for your inventory to cold and use your apple and mead.")
+    // console area
+    var comment = $("<p></p>").text("// Delcare an array for your inventory and put the apple and mead within it").addClass("double-indent");
+    var example = $("<p></p>").text("// Example: inventory = {banana, juice};").addClass("double-indent");
+    var initialization = $("<p></p>").text("Inventory[] inventory = new Inventory[2];").addClass("double-indent");
+    
+    $("#coding-text").empty().append(comment).append(example).append(initialization);
+}
+function animateLevelThree(){
+    $("#apple").addClass("hidden");
+    $("#mead").addClass("hidden");
+    $("#speech-bubble-text").empty().text("Items Added!");
+    $("#speech-bubble-area").removeClass("hidden");
+}
+
+// Level Three - Instantiating Object and Functions
+function levelFourText(){
+    // lesson area
+    $(".lesson-heading").text("Level 4: Objects and Functions");
+    $(".lesson-text").text("In this level you will notice there is a Warrior object created for you. The dot operator, '.', can be used to call functions on objects. \n Use the dot operator on your warrior object to call the walk() function.")
     // console area
     var warrior = $("<p></p>").text("Warrior warrior = new Warrior(new Level());").addClass("double-indent");
     var comment = $("<p></p>").text("// Use the dot operator on your warrior object to call the walk() function. ").addClass("double-indent");
-    $("#coding-text").empty().append(warrior).append(comment);
+    var example = $("<p></p>").text("// Example: warrior.action();").addClass("double-indent");
+    $("#coding-text").empty().append(warrior).append(comment).append(example);
 
 }
-function animateLevelThree(){
-    var leftMargin = 0;
+function animateLevelFour(){
     $("#speech-bubble-text").empty();
     $("#speech-bubble-area").addClass("hidden");
     for(var i = 0; i < 10; i++){
@@ -164,12 +278,12 @@ function animateLevelThree(){
     }
 }
 
-// Level Four - Arrays
-function levelFourText(){
+// Level Five - More Arrays
+function levelFiveText(){
     $("#uncompleted-bridge-area").removeClass("hidden");
     $("#reverse-bridge-area").removeClass("hidden");
     // lesson area
-    $(".lesson-heading").text("Level 4: Arrays");
+    $(".lesson-heading").text("Level 5: More Arrays");
     $(".lesson-text").text("An array is a data structure that holds a bunch of similar objects. Your warrior has an array of different sized blocks. Use to .sort() function on the array to complete the first half of the bridge and walk across the level.");
     
     // console area
@@ -178,51 +292,48 @@ function levelFourText(){
     var comment = $("<p></p>").text("// Call the .sort() function on the array object.").addClass("double-indent");
     $("#coding-text").empty().append(warrior).append(bridge).append(comment);
 }
-function animateLevelFour(){
+function animateLevelFive(){
     $("#uncompleted-bridge-area").addClass("hidden");
     $("#completed-bridge-area").removeClass("hidden");
-    // 1
+
     $("#warrior-image").animate({"margin-left": "75px"});
-    // 2
+    
     $("#warrior-image").animate({"margin-left": "150px"});
-    // 3
+    
     $("#warrior-image").animate({"margin-top": "339px"});
     $("#warrior-image").animate({"margin-left": "207px"});
     
-    // 4
     $("#warrior-image").animate({"margin-top": "286px"});
     $("#warrior-image").animate({"margin-left": "264px"});
     
-    // 5
     $("#warrior-image").animate({"margin-top": "231px"});
     $("#warrior-image").animate({"margin-left": "324px"});
     
-    // 6
     $("#warrior-image").animate({"margin-left": "381px"});
-    // 7
+    
     $("#warrior-image").animate({"margin-left": "443px"});
     $("#warrior-image").animate({"margin-top": "286px"});
-    // 8
+    
     $("#warrior-image").animate({"margin-left": "500px"});
     $("#warrior-image").animate({"margin-top": "339px"});
-    // 9
+    
     $("#warrior-image").animate({"margin-left": "600px"});
     $("#warrior-image").animate({"margin-top": "400px"});
 
     $("#warrior-image").animate({"margin-left": "700px"});
-    $("#warrior-image").animate({"margin-left": "800px"});
-    $("#warrior-image").animate({"margin-left": "900px"});
 
-    
+    $("#warrior-image").animate({"margin-left": "800px"});
+
+    $("#warrior-image").animate({"margin-left": "900px"});
 }
 
-// Level Five - For Loop
-function levelFiveText(){
+// Level Six - For Loop
+function levelSixText(){
     $("#door-area").removeClass("hidden");
     $("#keys-area").removeClass("hidden");
 
     // lesson text
-    $('.lesson-heading').text("Level 5: For Loops");
+    $('.lesson-heading').text("Level 6: For Loops");
     $('.lesson-text').text("A for loop is used to iterate through an array. The index of a for loop is the item number the loop is currently working on. You have an array of keys and one works to allow you to walk through the door. Write the code to select the key at each index and run the .unlock() function");
     
     //console text
@@ -235,7 +346,7 @@ function levelFiveText(){
     $("#end-loop").empty().append(endloop);
 }
 
-function animateLevelFive(){
+function animateLevelSix(){
     // timing for each element to show the keys being iterated through
     setTimeout(keyOne, 1000);
 
@@ -268,8 +379,6 @@ function door(){
     $("#door-image").addClass("reversed", 1000);
 }
 function walk(){
-    var leftMargin = 0;
-    
     $("#keys-area").addClass("hidden");
     $("#door-area").addClass("hidden");
 
@@ -278,15 +387,155 @@ function walk(){
     }
 }
 
-// Level Six - While Loop
+// Level Seven - While Loop
+function levelSevenText(){
+    $("#speech-bubble-text").empty().text("Any Obstacles?");
+    $("#speech-bubble-area").removeClass("hidden");
 
-// Level Seven - 
+    // lesson area
+    $(".lesson-heading").text("Level 7: While Loops");
+    $(".lesson-text").text("This level introduces the while loop, which executes code while a condition is true. There is already a call to make the warrior walk, we just need a function to see if there are no obstacles.")
+    
+    // console area
+    var comment = $("<p></p>").text("// Write a condition to check if isObstructed is false. If this is true our warrior will walk across the screen.").addClass("double-indent");
+    var example = $("<p></p>").text("// Example: while(isCondition == false)").addClass("double-indent");
+    $("#coding-text").empty().append(comment).append(example);
 
-// Level Eight - 
+    var openLoop = $("<p></p>").text("{").addClass("double-indent");
+    var code = $("<p></p>").text("warrior.walk();").addClass("double-indent");;
+    var endloop = $("<p></p>").text("}").addClass("double-indent");
+    $("#end-loop").empty().append(openLoop).append(code).append(endloop);
+}
+function animateLevelSeven(){
+    var leftMargin = 0;
+    $("#speech-bubble-text").empty();
+    $("#speech-bubble-area").addClass("hidden");
+    for(var i = 0; i < 10; i++){
+        $("#warrior-image").animate({"margin-left": (i*100)});
+    }
+}
 
-// Level Nine - 
+// Level Eight - Object Instatition
+function levelEightText(){
+    // lesson area
+    $(".lesson-heading").text("Level 8: Object Instantiation");
+    $(".lesson-text").text("Our warrior has come a long way and might begin to run into monsters. We should instantiate, or create, a weapon we can carry around for protection. In Java, you need to instantiate objects with a type, name and value. The format for this declaraction is usually: Type name = new Type(value);")
+    
+    
+    // console area
+    var comment = $("<p></p>").text("// Create an object of of the weapon type, named excalibur and with the value of sword. The format is Type name = new Type(value). Capitalize the type.").addClass("double-indent");
+    var example = $("<p></p>").text("// Example: Weapon mjolnir = new Weapon(hammer);").addClass("double-indent");
+    $("#coding-text").empty().append(comment).append(example);
+}
+function animateLevelEight(){
+    $("#speech-bubble-text").empty().append("Excalibur!");
+    $("#speech-bubble-area").removeClass("hidden");
 
-// Level Ten - 
+    $("#sword-area").removeClass("hidden");
+}
+
+// Level Nine - If
+function levelNineText(){
+    $("#wizard-area").removeClass("hidden");
+
+    // lesson area
+    $(".lesson-heading").text("Level 9: If/Else Blocks");
+    $(".lesson-text").text("There is an enemy at the end of this level. We need to use an if else block to tell our warrior to fight if theres an enemy in front of him, else he can walk.")
+    
+    // console area
+    var comment = $("<p></p>").text("// Write the code for the if condition checking that isEnemy is true").addClass("double-indent");
+    var example = $("<p></p>").text("// Example: if(isAlly == false)").addClass("double-indent");
+    $("#coding-text").empty().append(comment).append(example);
+
+    var openLoop = $("<p></p>").text("{").addClass("double-indent");
+    var fight = $("<p></p>").text("warrior.fight();").addClass("double-indent");
+    var walk = $("<p></p>").text("warrior.walk();").addClass("double-indent");;
+    var elseLoop = $("<p></p>").text("}else{").addClass("double-indent");
+    var endLoop = $("<p></p>").text("}else{").addClass("double-indent");
+    $("#end-loop").empty().append(openLoop).append(fight).append(elseLoop).append(walk).append(endLoop);
+
+}
+function animateLevelNine(){
+    for(var i = 0; i < 4; i++){
+        $("#warrior-image").animate({"margin-left": (i*100)});
+    }
+    setTimeout(fight, 2000);
+    setTimeout(deadWizard, 3000);
+    setTimeout(finishWalking, 4000);
+}
+function fight(){
+    $("#speech-bubble-text").empty().append("Fight!");
+    $("#speech-bubble-area").removeClass("hidden");
+}
+function deadWizard(){
+    $("#wizard-area").addClass("hidden");
+}
+function finishWalking(){
+    $("#speech-bubble-text").empty();
+    $("#speech-bubble-area").addClass("hidden");
+    for(var i = 4; i < 10; i++){
+        $("#warrior-image").animate({"margin-left": (i*100)});
+    }
+}
+
+// Level Ten - Else If
+function levelTenText(){
+    $("#wizard-area").removeClass("hidden");
+    $("#warden-area").removeClass("hidden");
+
+    // lesson area
+    $(".lesson-heading").text("Level 10: Else If Statements");
+    $(".lesson-text").text("This level has an enemy and an ally. We want to say Hi! to any allies and fight any enemies. An if/else if blocks lets up run multiple conditions so our warrior successfully navigates to the end!");
+    
+    
+    // console area
+    var comment = $("<p></p>").text("// Write the code for the else if condition checking that isAlly is true").addClass("double-indent");
+    var example = $("<p></p>").text("// Example: else if(isFriend == true)").addClass("double-indent");
+    var ifLoop = $("<p></p>").text("if(isEnemy == true){").addClass("double-indent");
+    var fight = $("<p></p>").text("warrior.fight();").addClass("double-indent");
+    var endLoop = $("<p></p>").text("}").addClass("double-indent");
+    $("#coding-text").empty().append(comment).append(example).append(ifLoop).append(fight).append(endLoop);
+
+    var openLoop = $("<p></p>").text("{").addClass("double-indent");
+    var greet = $("<p></p>").text("warrior.greet();").addClass("double-indent");
+    var elseLoop = $("<p></p>").text("}else{").addClass("double-indent");
+    var walk = $("<p></p>").text("warrior.walk();").addClass("double-indent");;
+    var end = $("<p></p>").text("}").addClass("double-indent");
+    
+    $("#end-loop").empty().append(openLoop).append(greet).append(elseLoop).append(walk).append(end);
+}
+function animateLevelTen(){
+    for(var i = 0; i < 4; i++){
+        $("#warrior-image").animate({"margin-left": (i*100)});
+    }
+    setTimeout(fight, 2000);
+    setTimeout(deadWizard, 3000);
+    setTimeout(walkMore, 5000);
+    setTimeout(greet, 8000);
+    setTimeout(walkAgain, 10000);
+
+}
+
+function walkMore(){
+    $("#speech-bubble-text").empty();
+    $("#speech-bubble-area").addClass("hidden");
+    $("#warrior-image").animate({"margin-left": 400});
+    $("#warrior-image").animate({"margin-left": 500});
+}
+function greet(){
+    $("#speech-bubble-text").empty().append("Hi Friend!");
+    $("#speech-bubble-area").removeClass("hidden");
+}
+function walkAgain(){
+    $("#speech-bubble-text").empty();
+    $("#speech-bubble-area").addClass("hidden");
+    for(var i = 5; i < 10; i++){
+        $("#warrior-image").animate({"margin-left": (i*100)});
+    }
+}
+
+
+
 
 
 
